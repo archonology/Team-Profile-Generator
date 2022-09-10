@@ -45,3 +45,12 @@ a:hover {
     color: rgb(250, 135, 94);
     text-decoration: solid;
  }
+
+ .gitHub {
+ color: rgb(181, 116, 249);
+   text-decoration: none;
+ }
+ .gitHub:hover {
+    color: rgb(152, 88, 220);
+      text-decoration: none;
+    }
