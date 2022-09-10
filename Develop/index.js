@@ -1,2 +1,5 @@
 const generateProfiles = require("./generateProfiles");
-const Profile = require("./Profile");
+// const Profile = require("./profile");
+
+// Profile.printProfile();
+

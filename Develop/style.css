@@ -1,0 +1,47 @@
+body {
+    text-align: center;
+    background-color: rgb(47, 68, 79);
+}
+header {
+    background-color: rgb(19, 30, 62);
+    color: antiquewhite;
+    padding: 2em;
+    text-align: center;
+}
+.container {
+    margin-top: 2em;
+}
+.card {
+    margin: 1em;
+    padding: 1.2em;
+    min-width: 300px;
+    max-width: 300px;
+    background-color: slategray;
+    color: antiquewhite;
+    text-align: left;
+}
+.card h4 {
+    color: rgb(255, 217, 0);
+}
+.card-body {
+    margin-top: 13px;
+    background-color: rgb(39, 49, 61);
+    
+}
+#card-info {
+    padding: 13px;
+    margin-bottom: 13px;
+    background-color: rgb(40, 64, 94);
+    border-radius: 5px;
+}
+h5 {
+    color: rgb(154, 207, 217);
+}
+a {
+   color: rgb(246, 161, 130);
+   text-decoration: none;
+}
+a:hover {
+    color: rgb(250, 135, 94);
+    text-decoration: solid;
+ }

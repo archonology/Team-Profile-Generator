@@ -1,0 +1,1 @@
+const generateProfile = require("../generateProfile");

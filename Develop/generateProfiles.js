@@ -1,13 +1,13 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 
-class Profile {
-  constructor(name, id, email, phone, position) {
-    this.name = name;
-    this.id = id;
-    this.email = email;
-    this.phone = phone;
-    this.positionHeld = position;
+// class Profile {
+//   constructor(name, id, email, phone, position) {
+//     this.name = name;
+//     this.id = id;
+//     this.email = email;
+//     this.phone = phone;
+//     this.positionHeld = position;
 
     inquirer
       //collecting data from user
@@ -43,19 +43,21 @@ class Profile {
         console.log(answers);
         const { name, id, email, phone, position } = answers;
 
-        const generateProfiles = `
-${this.name}
-${this.id}
-${this.email}
-${this.phone}`;
+        const generateProfiles = (`
+        name: ${name}
+        id: ${id}
+        email: ${email}
+        phone: ${phone}
+        position: ${position}
+        `)
 
-        //writes the readme file and notifies user whether it was successful or not
-        fs.writeFile("generateProfiles.js", generateProfiles, (err) =>
+        //writes...
+        fs.writeFile("generateProfiles1.js", generateProfiles, (err) =>
           err
             ? console.log(err)
             : console.log("Success! Worker profiles have been generated.")
         );
       });
-  }
-}
-module.exports = generateProfiles;
+//   }
+// }
+// module.exports = generateProfiles;
