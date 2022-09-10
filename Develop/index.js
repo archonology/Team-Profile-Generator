@@ -1,5 +1,8 @@
-const generateProfiles = require("./generateProfiles");
-// const Profile = require("./profile");
+const ProfileMaker = require("./lib/Game");
 
-// Profile.printProfile();
+// Initialize a new Game object
+const game = new Game();
+
+// Start playing
+game.play();
 
