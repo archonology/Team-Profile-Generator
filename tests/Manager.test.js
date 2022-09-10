@@ -1,25 +1,25 @@
-const manager = require("../lib/Manager");
+const Manager = require("../lib/Manager");
 
 describe("new manager", () => {
   it("collects manager name", () => {
-    expect(manager.name("Frodo")).toBe("Frodo");
+    expect(Manager.name("manager")).toBe("manager");
   });
 
 it("collects manager id", () => {
-  expect(manager.id(22)).toBe(22);
+  expect(Manager.id(22)).toBe(22);
 });
 
 it("collects manager email", () => {
-  expect(manager.email("@email")).toBe("@email");
+  expect(Manager.email("@email")).toBe("@email");
 });
 
 it("collects manager role", () => {
-  expect(manager.role("Manager")).toBe("Manager");
+  expect(Manager.role("Manager")).toBe("Manager");
 });
 
 
 it("only allows one manager to be added", () => {
-  expect(manager.length).toBe(0);
+  expect(Manager.length).toBe(0);
 });
 
 });

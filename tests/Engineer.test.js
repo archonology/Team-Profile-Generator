@@ -1,24 +1,24 @@
-const engineer = require("../lib/Engineer");
+const Engineer = require("../lib/Engineer");
 
 describe("new engineer", () => {
   it("collects engineer name", () => {
-    expect(engineer.name("Frodo")).toBe("Frodo");
+    expect(Engineer.name("Frodo")).toBe("Frodo");
   });
 
 it("collects engineer id", () => {
-  expect(engineer.id(22)).toBe(22);
+  expect(Engineer.id(22)).toBe(22);
 });
 
 it("collects engineer email", () => {
-  expect(engineer.email("@email")).toBe("@email");
+  expect(Engineer.email("@email")).toBe("@email");
 });
 
 it("collects engineer role", () => {
-  expect(engineer.role("Engineer")).toBe("Engineer");
+  expect(Engineer.role("Engineer")).toBe("Engineer");
 });
 
 it("allows multiple engineer to be added", () => {
-  expect(engineer[i].length).toBe(engineer[i].length >= [1]);
+  expect(Engineer[i].length).toBe(Engineer[i].length >= [1]);
 });
 
 });
