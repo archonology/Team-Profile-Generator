@@ -1,8 +1,24 @@
 const engineer = require("../lib/Engineer");
 
-describe("Engineer class", () => {
-    it("collects input for name, id, email, and role", () => {
-      const frodo = new Profile ("Frodo Baggins", 12, "frodo@middleware.com", 7447, "Engineer");
-      expect(frodo).toBe(frodo);
-    });
+describe("new engineer", () => {
+  it("collects engineer name", () => {
+    expect(engineer.name("Frodo")).toBe("Frodo");
   });
+
+it("collects engineer id", () => {
+  expect(engineer.id(22)).toBe(22);
+});
+
+it("collects engineer email", () => {
+  expect(engineer.email("@email")).toBe("@email");
+});
+
+it("collects engineer role", () => {
+  expect(engineer.role("Engineer")).toBe("Engineer");
+});
+
+it("allows multiple engineer to be added", () => {
+  expect(engineer[i].length).toBe(engineer[i].length >= [1]);
+});
+
+});
