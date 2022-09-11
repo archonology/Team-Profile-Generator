@@ -2,23 +2,32 @@ const Engineer = require("../lib/Engineer");
 
 describe("new engineer", () => {
   it("collects engineer name", () => {
-    expect(Engineer.name("Frodo")).toBe("Frodo");
+    const gandalf = new Engineer("Gandalf", 9, "Gandalf@email", 2222, "wizardGrey");
+    expect(gandalf.name).toBe("Gandalf");
   });
 
 it("collects engineer id", () => {
-  expect(Engineer.id(22)).toBe(22);
+  const gandalf = new Engineer("Gandalf", 9, "Gandalf@email", 2222, "wizardGrey");
+  expect(gandalf.id).toBe(9);
 });
 
 it("collects engineer email", () => {
-  expect(Engineer.email("@email")).toBe("@email");
+  const gandalf = new Engineer("Gandalf", 9, "Gandalf@email", 2222, "wizardGrey");
+  expect(gandalf.email).toBe("Gandalf@email");
+});
+
+it("states worker's role", () => {
+  const gandalf = new Engineer("Gandalf", 9, "Gandalf@email", 2222, "wizardGrey");
+  expect(gandalf.role).toBe("Engineer");
 });
 
 it("collects engineer role", () => {
-  expect(Engineer.role("Engineer")).toBe("Engineer");
+  const gandalf = new Engineer("Gandalf", 9, "Gandalf@email", 2222, "wizardGrey");
+  expect(gandalf.role).toBe("Engineer");
 });
 
-it("allows multiple engineer to be added", () => {
-  expect(Engineer[i].length).toBe(Engineer[i].length >= [1]);
-});
+// it("allows multiple engineer to be added", () => {
+//   expect(Engineer[i].length).toBe(Engineer[i].length >= [1]);
+// });
 
 });

@@ -2,26 +2,35 @@ const Manager = require("../lib/Manager");
 
 describe("new manager", () => {
   it("collects manager name", () => {
-    expect(Manager.name("manager")).toBe("manager");
+    const bilbo = new Manager("Bilbo", 111, "Bilbo@email", 7447);
+    expect(bilbo.name).toBe("Bilbo");
   });
 
 it("collects manager id", () => {
-  expect(Manager.id(22)).toBe(22);
+  const bilbo = new Manager("Bilbo", 111, "Bilbo@email", 7447);
+  expect(bilbo.id).toBe(111);
 });
 
 it("collects manager email", () => {
-  expect(Manager.email("@email")).toBe("@email");
+  const bilbo = new Manager("Bilbo", 111, "Bilbo@email", 7447);
+  expect(bilbo.email).toBe("Bilbo@email");
+});
+
+it("collects manager office phone", () => {
+  const bilbo = new Manager("Bilbo", 111, "Bilbo@email", 7447);
+  expect(bilbo.officeNumber).toBe(7447);
 });
 
 it("collects manager role", () => {
-  expect(Manager.role("Manager")).toBe("Manager");
+  const bilbo = new Manager("Bilbo", 111, "Bilbo@email", 7447);
+  expect(bilbo.role).toBe("Manager");
 });
 
 
-it("only allows one manager to be added", () => {
-  expect(Manager.length).toBe(0);
+// it("only allows one manager to be added", () => {
+//   expect(Manager.length).toBe(0);
 });
 
-});
+// });
 
 
