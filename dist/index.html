@@ -1,168 +1,4 @@
-const fs = require("fs");
-const inquirer = require("inquirer");
-const Employee = require("./lib/Employee");
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
-
-inquirer
-  //collecting data from user -- there can only be one manager. manager function needs to terminate after manager added.
-  .prompt([
-    {
-      type: "input",
-      message:
-        "Welcome! Please Build your team. \n What is the team manager's name?",
-      name: "manager.name",
-    },
-    {
-      type: "input",
-      message: "What is their employee ID?",
-      name: "manager.id",
-    },
-    {
-      type: "input",
-      message: "What is their email address?",
-      name: "manager.email",
-    },
-    {
-      type: "input",
-      message: "What is their work phone number?",
-      name: "manager.officeNumber",
-    },
-    {
-      type: "list",
-      name: "role",
-      message: "Would you like to add another teammate?",
-      choices: [
-        "Engineer",
-        "Intern",
-        new inquirer.Separator(),
-        "No, thanks!",
-      ],
-    },
-    //if/when Engineer is selected, these questions are collected:
-    {
-      type: "input",
-      message: "What is their name?",
-      name: "engineer.name",
-      when(answers) {
-        return answers.role === "Engineer";
-      },
-    },
-    {
-      type: "input",
-      message: "What is their employee ID?",
-      name: "engineer.id",
-      when(answers) {
-        return answers.role === "Engineer";
-      },
-    },
-    {
-      type: "input",
-      message: "What is their email address?",
-      name: "engineer.email",
-      when(answers) {
-        return answers.role === "Engineer";
-      },
-    },
-    {
-      type: "input",
-      message: "What is their work phone number?",
-      name: "engineer.officeNumber",
-      when(answers) {
-        return answers.role === "Engineer";
-      },
-    },
-    {
-      type: "input",
-      message: "What is their GitHub handle?",
-      name: "engineer.github",
-      when(answers) {
-        return answers.role === "Engineer";
-      },
-    },
-    {
-      type: "list",
-      name: "role",
-      message: "Would you like to add another teammate?",
-      choices: [
-        "Engineer",
-        "Intern",
-        new inquirer.Separator(),
-        "Nope, the team is complete!",
-      ],
-      when(answers) {
-        return answers.role === "Engineer";
-      },
-    },
-    //if/when Intern is selected, these questions are collected:
-    {
-        type: "input",
-        message: "What is their name?",
-        name: "intern.name",
-        when(answers) {
-          return answers.role === "Intern";
-        },
-      },
-      {
-        type: "input",
-        message: "What is their employee ID?",
-        name: "intern.id",
-        when(answers) {
-          return answers.role === "Intern";
-        },
-      },
-      {
-        type: "input",
-        message: "What is their email address?",
-        name: "intern.email",
-        when(answers) {
-          return answers.role === "Intern";
-        },
-      },
-      {
-        type: "input",
-        message: "What is their work phone number?",
-        name: "intern.officeNumber",
-        when(answers) {
-          return answers.role === "Intern";
-        },
-      },
-      {
-        type: "input",
-        message: "What school do they attend?",
-        name: "intern.school",
-        when(answers) {
-          return answers.role === "Intern";
-        },
-      },
-      {
-        type: "list",
-        name: "role",
-        message: "Would you like to add another teammate?",
-        choices: [
-          "Engineer",
-          "Intern",
-          new inquirer.Separator(),
-          "Nope, the team is complete!!",
-        ],
-        when(answers) {
-          return answers.role === "Intern";
-        },
-      },
-  ])
-  .then((answers) => {
-    console.log(answers);
-    console.log(answers.manager.name);
-    console.log(answers.intern.name);
-    console.log(answers.engineer.name);
-
-    const manager = answers.manager;
-    const engineer = answers.engineer;
-    const intern = answers.intern;
-    
-
-        const makeTeam = `<!DOCTYPE html>
+<!DOCTYPE html>
         <html lang="en">
           <head>
             <meta charset="UTF-8" />
@@ -190,7 +26,7 @@ inquirer
               <div class="container">
                 <div class="row d-flex justify-content-center">
                   <div class="card col-sm shadow-lg mb-5 rounded">
-                    <h3>${manager.name}</h3>
+                    <h3>Splinter</h3>
                     <h4>
                       <i class="fa fa-refresh" style="font-size: 24px"></i>
                       Manager
@@ -198,63 +34,63 @@ inquirer
                     <div class="card-body rounded">
                       <div id="card-info">
                         <h5>Employee ID</h5>
-                        <p>${manager.id}</p>
+                        <p>00</p>
                       </div>
                       <div id="card-info">
                         <h5>Email</h5>
-                        <a href="mailto:reed.meher@gmail.com">${manager.email}</a>
+                        <a href="mailto:reed.meher@gmail.com">rats@nycsewers.com</a>
                       </div>
                       <div id="card-info">
                         <h5>Phone #</h5>
-                        <p>${manager.officeNumber}</p>
+                        <p>1234</p>
                       </div>
                     </div>
                   </div>
                   <div class="card col-sm shadow-lg mb-5 rounded">
-                    <h3>${engineer.name}</h3>
+                    <h3>Leo</h3>
                     <h4>
                       <i class="fa fa-sitemap" style="font-size: 24px"></i> Engineer
                     </h4>
                     <div class="card-body rounded">
                       <div id="card-info">
                         <h5>Employee ID</h5>
-                        <p>${engineer.id}</p>
+                        <p>01</p>
                       </div>
                       <div id="card-info">
                         <h5>Email</h5>
-                        <a href="mailto:reed.meher@gmail.com">${engineer.email}</a>
+                        <a href="mailto:reed.meher@gmail.com">01</a>
                       </div>
                       <div id="card-info">
                         <h5>Phone #</h5>
-                        <p>${engineer.officeNumber}</p>
+                        <p>5678</p>
                       </div>
                       <div id="card-info">
                         <h5>GitHub</h5>
-                        <a class="gitHub" href="#">${engineer.github}</a>
+                        <a class="gitHub" href="#">leoSwords</a>
                       </div>
                     </div>
                   </div>
                   <div class="card col-sm shadow-lg mb-5 rounded">
-                    <h3>${intern.name}</h3>
+                    <h3>Raph</h3>
                     <h4>
                       <i class="fa fa-user-plus" style="font-size: 24px"></i> Intern
                     </h4>
                     <div class="card-body rounded">
                       <div id="card-info">
                         <h5>Employee ID</h5>
-                        <p>${intern.id}</p>
+                        <p>02</p>
                       </div>
                       <div id="card-info">
                         <h5>Email</h5>
-                        <a href="mailto:reed.meher@gmail.com">${intern.email}</a>
+                        <a href="mailto:reed.meher@gmail.com">raph@nycsewers.com</a>
                       </div>
                       <div id="card-info">
                         <h5>Phone #</h5>
-                        <p>${intern.officeNumber}</p>
+                        <p>7890</p>
                       </div>
                       <div id="card-info">
                         <h5>School</h5>
-                        <p>${intern.school}</p>
+                        <p>Rude School/p>
                       </div>
                     </div>
                   </div>
@@ -312,13 +148,4 @@ inquirer
             <script src="../lib/Employee.js"></script>
           </body>
         </html>
-        `;
-    
-
-        fs.writeFile("./dist/index.html", makeTeam, (err) =>
-          err
-            ? console.log(err)
-            : console.log("Success! Team page has been generated.")
-        );
-
-    });
+        
