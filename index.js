@@ -58,7 +58,7 @@ function initializeTeam() {
     ])
     .then((answers) => {
       console.log(answers);
-      console.log(answers.manager.name);
+      console.log(answers.manager.role);
       const manager = answers.manager;
       const newManager = new Manager(
         manager.name,
@@ -116,16 +116,18 @@ function initializeTeam() {
                     </div>
                   </div>
                 </div>`;
-      console.log(printHtml);
+      // console.log(printHtml);
       theTeam.push(printHtml);
       console.log(theTeam);
-      if (manager.role === "Engineer") {
+
+      console.log(answers.role);
+      if (answers.role === "Engineer") {
         addEngineer();
       }
-      if (manager.role === "Intern") {
+      if (answers.role === "Intern") {
         addIntern();
       }
-      if (manager.role === "No, thanks!") {
+      if (answers.role === "No, thanks!") {
         const endTeamPage = `</main>
     <script src="../lib/Employee.js"></script>
   </body>
@@ -225,14 +227,14 @@ function addEngineer() {
       console.log(engineerCard);
       theTeam.push(engineerCard);
       console.log(theTeam);
-
-      if (engineer.role === "Engineer") {
+      console.log(answers.role);
+      if (answers.role === "Engineer") {
         addEngineer();
       }
-      if (engineer.role === "Intern") {
+      if (answers.role === "Intern") {
         addIntern();
       }
-      if (engineer.role === "Nope, the team is complete!") {
+      if (answers.role === "Nope, the team is complete!") {
         const endTeamPage = `</main>
     <script src="../lib/Employee.js"></script>
   </body>
@@ -328,13 +330,13 @@ function addIntern() {
       theTeam.push(internCard);
       console.log(theTeam);
 
-      if (intern.role === "Engineer") {
+      if (answers.role === "Engineer") {
         addEngineer(theEngineers);
       }
-      if (intern.role === "Intern") {
+      if (answers.role === "Intern") {
         addIntern(theInterns);
       }
-      if (intern.role === "Nope, the team is complete!") {
+      if (answers.role === "Nope, the team is complete!") {
         const endTeamPage = `</main>
     <script src="../lib/Employee.js"></script>
   </body>
