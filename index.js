@@ -19,7 +19,7 @@ const theEngineers = [];
 const theInterns = [];
 const theTeam = [];
 
-function initializeTeam() {
+function init() {
   inquirer
     //collecting data from user -- there can only be one manager. manager function needs to terminate after manager added.
     .prompt([
@@ -68,57 +68,31 @@ function initializeTeam() {
       );
       console.log(newManager);
       theManager.push(newManager);
-      const printHtml = `<!DOCTYPE html>
-      <html lang="en">
-        <head>
-          <meta charset="UTF-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-            integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-            crossorigin="anonymous"
-          />
-          <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-          />
-          <link rel="stylesheet" href="./style.css" />
-          <title>Team Generator</title>
-        </head>
-        <!-- This HTML is solely for formatting the template literates. -->
-        <body>
-          <header>
-            <h1>My Development Team</h1>
-          </header>
-          <main>
-            <div class="container">
-              <div class="row d-flex justify-content-center">
-                <div class="card col-sm shadow-lg mb-5 rounded">
-                  <h3>${manager.name}</h3>
-                  <h4>
-                    <i class="fa fa-refresh" style="font-size: 24px"></i>
-                    Manager
-                  </h4>
-                  <div class="card-body rounded">
-                    <div id="card-info">
-                      <h5>Employee ID</h5>
-                      <p>${manager.id}</p>
-                    </div>
-                    <div id="card-info">
-                      <h5>Email</h5>
-                      <a href="mailto:reed.meher@gmail.com">${manager.email}</a>
-                    </div>
-                    <div id="card-info">
-                      <h5>Phone #</h5>
-                      <p>${manager.officeNumber}</p>
-                    </div>
-                  </div>
-                </div>`;
-      // console.log(printHtml);
-      theTeam.push(printHtml);
       console.log(theTeam);
+      //append the team cards to the now generated HTML
+      document.getElementById(
+        "card-zone"
+      ).innerHTML += `<div class="card col-sm shadow-lg mb-5 rounded">
+        <h3>${manager.name}</h3>
+        <h4>
+          <i class="fa fa-refresh" style="font-size: 24px"></i>
+          Manager
+        </h4>
+        <div class="card-body rounded">
+          <div id="card-info">
+            <h5>Employee ID</h5>
+            <p>${manager.id}</p>
+          </div>
+          <div id="card-info">
+            <h5>Email</h5>
+            <a href="mailto:${manager.email}">${manager.email}/a>
+          </div>
+          <div id="card-info">
+            <h5>Phone #</h5>
+            <p>${manager.officeNumber}</p>
+          </div>
+        </div>
+      </div>`;
 
       console.log(answers.role);
       if (answers.role === "Engineer") {
@@ -127,17 +101,8 @@ function initializeTeam() {
       if (answers.role === "Intern") {
         addIntern();
       }
-      if (answers.role === "No, thanks!") {
-        const endTeamPage = `</main>
-    <script src="../lib/Employee.js"></script>
-  </body>
-</html>`;
-        theTeam.push(endTeamPage);
-        fs.writeFile("./dist/index.html", theTeam, (err) =>
-          err
-            ? console.log(err)
-            : console.log("Success! Team page has been generated.")
-        );
+      if (answers.role === "Nope, the team is complete!") {
+        return "Your team page is complete!";
       }
     });
 }
@@ -145,7 +110,6 @@ function initializeTeam() {
 function addEngineer() {
   inquirer
     .prompt([
-      //if/when Engineer is selected, these questions are collected:
       {
         type: "input",
         message: "What is their name?",
@@ -160,9 +124,6 @@ function addEngineer() {
         type: "input",
         message: "What is their email address?",
         name: "engineer.email",
-        when(answers) {
-          return answers.role === "Engineer";
-        },
       },
       {
         type: "input",
@@ -199,11 +160,14 @@ function addEngineer() {
       );
       console.log(newEngineer);
       theEngineers.push(newEngineer);
-      //need the template literate for the engineerCard?
-      const engineerCard = `<div class="card col-sm shadow-lg mb-5 rounded">
+      //append the engineer cards
+      document.getElementById(
+        "card-zone"
+      ).innerHTML += `<div class="card col-sm shadow-lg mb-5 rounded">
       <h3>${engineer.name}</h3>
       <h4>
-        <i class="fa fa-sitemap" style="font-size: 24px"></i> Engineer
+        <i class="fa fa-refresh" style="font-size: 24px"></i>
+        Manager
       </h4>
       <div class="card-body rounded">
         <div id="card-info">
@@ -212,22 +176,18 @@ function addEngineer() {
         </div>
         <div id="card-info">
           <h5>Email</h5>
-          <a href="mailto:reed.meher@gmail.com">${engineer.email}</a>
+          <a href="mailto:${engineer.email}">${engineer.email}/a>
         </div>
         <div id="card-info">
           <h5>Phone #</h5>
           <p>${engineer.officeNumber}</p>
         </div>
         <div id="card-info">
-          <h5>GitHub</h5>
-          <a class="gitHub" href="#">${engineer.github}</a>
+        <h5>GitHub</h5>
+        <a class="gitHub" href="${engineer.github}>${engineer.github}</a>
         </div>
-      </div>
-    </div>`;
-      console.log(engineerCard);
-      theTeam.push(engineerCard);
-      console.log(theTeam);
-      console.log(answers.role);
+        </div>
+      </div>`;
       if (answers.role === "Engineer") {
         addEngineer();
       }
@@ -235,19 +195,11 @@ function addEngineer() {
         addIntern();
       }
       if (answers.role === "Nope, the team is complete!") {
-        const endTeamPage = `</main>
-    <script src="../lib/Employee.js"></script>
-  </body>
-</html>`;
-        theTeam.push(endTeamPage);
-        fs.writeFile("./dist/index.html", theTeam, (err) =>
-          err
-            ? console.log(err)
-            : console.log("Success! Team page has been generated.")
-        );
+        return "Your team page is complete!";
       }
     });
 }
+
 function addIntern() {
   inquirer
     .prompt([
@@ -302,7 +254,9 @@ function addIntern() {
       );
       console.log(newIntern);
       theInterns.push(newIntern);
-      const internCard = `<div class="card col-sm shadow-lg mb-5 rounded">
+      document.getElementById(
+        "card-zone"
+      ).innerHTML += `<div class="card col-sm shadow-lg mb-5 rounded">
       <h3>${intern.name}</h3>
       <h4>
         <i class="fa fa-user-plus" style="font-size: 24px"></i> Intern
@@ -331,203 +285,55 @@ function addIntern() {
       console.log(theTeam);
 
       if (answers.role === "Engineer") {
-        addEngineer(theEngineers);
+        addEngineer();
       }
       if (answers.role === "Intern") {
-        addIntern(theInterns);
+        addIntern();
       }
       if (answers.role === "Nope, the team is complete!") {
-        const endTeamPage = `</main>
-    <script src="../lib/Employee.js"></script>
-  </body>
-</html>`;
-        theTeam.push(endTeamPage);
-        fs.writeFile("./dist/index.html", theTeam, (err) =>
-          err
-            ? console.log(err)
-            : console.log("Success! Team page has been generated.")
-        );
+        return "Your team page is complete!";
       }
     });
 }
 
-// const makeTeam = `<!DOCTYPE html>
-// <html lang="en">
-//   <head>
-//     <meta charset="UTF-8" />
-//     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-//     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-//     <link
-//       rel="stylesheet"
-//       href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-//       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-//       crossorigin="anonymous"
-//     />
-//     <link
-//       rel="stylesheet"
-//       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-//     />
-//     <link rel="stylesheet" href="./style.css" />
-//     <title>Team Generator</title>
-//   </head>
-//   <!-- This HTML is solely for formatting the template literates. -->
-//   <body>
-//     <header>
-//       <h1>My Development Team</h1>
-//     </header>
-//     <main>
-//       <div class="container">
-//         <div class="row d-flex justify-content-center">
-//           <div class="card col-sm shadow-lg mb-5 rounded">
-//             <h3>${manager.name}</h3>
-//             <h4>
-//               <i class="fa fa-refresh" style="font-size: 24px"></i>
-//               Manager
-//             </h4>
-//             <div class="card-body rounded">
-//               <div id="card-info">
-//                 <h5>Employee ID</h5>
-//                 <p>${manager.id}</p>
-//               </div>
-//               <div id="card-info">
-//                 <h5>Email</h5>
-//                 <a href="mailto:reed.meher@gmail.com">${manager.email}</a>
-//               </div>
-//               <div id="card-info">
-//                 <h5>Phone #</h5>
-//                 <p>${manager.officeNumber}</p>
-//               </div>
-//             </div>
-//           </div>
-//           <div class="card col-sm shadow-lg mb-5 rounded">
-//             <h3>${engineer.name}</h3>
-//             <h4>
-//               <i class="fa fa-sitemap" style="font-size: 24px"></i> Engineer
-//             </h4>
-//             <div class="card-body rounded">
-//               <div id="card-info">
-//                 <h5>Employee ID</h5>
-//                 <p>${engineer.id}</p>
-//               </div>
-//               <div id="card-info">
-//                 <h5>Email</h5>
-//                 <a href="mailto:reed.meher@gmail.com">${engineer.email}</a>
-//               </div>
-//               <div id="card-info">
-//                 <h5>Phone #</h5>
-//                 <p>${engineer.officeNumber}</p>
-//               </div>
-//               <div id="card-info">
-//                 <h5>GitHub</h5>
-//                 <a class="gitHub" href="#">${engineer.github}</a>
-//               </div>
-//             </div>
-//           </div>
-//           <div class="card col-sm shadow-lg mb-5 rounded">
-//             <h3>${intern.name}</h3>
-//             <h4>
-//               <i class="fa fa-user-plus" style="font-size: 24px"></i> Intern
-//             </h4>
-//             <div class="card-body rounded">
-//               <div id="card-info">
-//                 <h5>Employee ID</h5>
-//                 <p>${intern.id}</p>
-//               </div>
-//               <div id="card-info">
-//                 <h5>Email</h5>
-//                 <a href="mailto:reed.meher@gmail.com">${intern.email}</a>
-//               </div>
-//               <div id="card-info">
-//                 <h5>Phone #</h5>
-//                 <p>${intern.officeNumber}</p>
-//               </div>
-//               <div id="card-info">
-//                 <h5>School</h5>
-//                 <p>${intern.school}</p>
-//               </div>
-//             </div>
-//           </div>
-//                   <div class="card col-sm shadow-lg mb-5 rounded">
-//                     <h3>Peregrin Took</h3>
-//                     <h4>
-//                       <i class="fa fa-user-plus" style="font-size: 24px"></i> Intern
-//                     </h4>
-//                     <div class="card-body rounded">
-//                       <div id="card-info">
-//                         <h5>Employee ID</h5>
-//                         <p>22</p>
-//                       </div>
-//                       <div id="card-info">
-//                         <h5>Email</h5>
-//                         <a href="mailto:reed.meher@gmail.com">pip@middleware.net</a>
-//                       </div>
-//                       <div id="card-info">
-//                         <h5>Phone #</h5>
-//                         <p>999-555-5555</p>
-//                       </div>
-//                       <div id="card-info">
-//                         <h5>School</h5>
-//                         <p>U of MN Bootcamp</p>
-//                       </div>
-//                     </div>
-//                   </div>
-//                   <div class="card col-sm shadow-lg mb-5 rounded">
-//                     <h3>Merridoc Brandybuck</h3>
-//                     <h4>
-//                       <i class="fa fa-user-plus" style="font-size: 24px"></i> Intern
-//                     </h4>
-//                     <div class="card-body rounded">
-//                       <div id="card-info">
-//                         <h5>Employee ID</h5>
-//                         <p>22</p>
-//                       </div>
-//                       <div id="card-info">
-//                         <h5>Email</h5>
-//                         <a href="mailto:reed.meher@gmail.com">merry@middleware.net</a>
-//                       </div>
-//                       <div id="card-info">
-//                         <h5>Phone #</h5>
-//                         <p>999-555-5555</p>
-//                       </div>
-//                       <div id="card-info">
-//                         <h5>School</h5>
-//                         <p>U of MN Bootcamp</p>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//     </main>
-//     <script src="../lib/Employee.js"></script>
-//   </body>
-// </html>
-//         `;
+function generateHTML() {
+  const indexHTML = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Team Generator</title>
+  </head>
+  <body>
+    <header>
+      <h1>My Development Team</h1>
+    </header>
+    <main>
+      <div class="container">
+        <div class="row d-flex justify-content-center" id="card-zone">
+          <!-- append cards here -->
+        </div>
+      </div>
+    </main>
+    <script src="../lib/Employee.js"></script>
+  </body>
+</html>`;
+}
+fs.writeFile("./dist/index.html", indexHTML, (err) =>
+  err ? console.log(err) : console.log("Success! Team page has been generated.")
+);
 
-//         console.log(`from the prompts, data check:
-//         Manager:
-//         name:${answers.manager.name}
-//         id:${answers.manager.id}
-//         email:${answers.manager.email}
-//         officeNumber:${answers.manager.officeNumber}
-//         Engineer:
-//         name:${answers.engineer.name}
-//         id:${answers.engineer.id}
-//         email:${answers.engineer.email}
-//         officeNumber:${answers.engineer.officeNumber}
-//         Intern:
-//         name:${answers.intern.name}
-//         id:${answers.intern.id}
-//         email:${answers.intern.email}
-//         officeNumber:${answers.intern.officeNumber}`)
-
-//         fs.writeFile("./dist/index.html", makeTeam, (err) =>
-//           err
-//             ? console.log(err)
-//             : console.log("Success! Team page has been generated.")
-//         );
-
-//     });
-//   }
-// //looking for how to push these answers to the different lib files...
-
-initializeTeam();
+init();
+generateHTML();
