@@ -13,10 +13,10 @@ const Intern = require("./lib/Intern");
 // const employee = new Employee();
 
 // //empty objects to catch the teammates
-// const theManager = [];
-// const theEngineers = [];
-// const theInterns = [];
-// const theTeam = [];
+const theManager = [];
+const theEngineers = [];
+const theInterns = [];
+const theTeam = [];
 
 function init() {
   inquirer
