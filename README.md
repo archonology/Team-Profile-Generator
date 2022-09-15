@@ -2,7 +2,10 @@
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
 ## Links
 [Click here to visit this project's repository](https://github.com/archonology/Team-Profile-Generator)<br>
-[Click here to watch a video tutorial on Youtube](pending)    
+[Click here to watch a video tutorial on Youtube](https://youtu.be/J4EGzkKHXk8)
+## Screenshot
+![Project Screenshot](./src/Screen%20Shot%202022-09-14%20at%2011.05.35%20PM.jpg)    
+
 ## Table of Contents:
 #### [Description](https://github.com/archonology/Pro-Readme-Generator/blob/main/README.md#description)
 #### [Installation](https://github.com/archonology/Pro-Readme-Generator/blob/main/README.md#installation)

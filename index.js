@@ -1,5 +1,4 @@
 const fs = require("fs");
-const chalk = require("chalk");
 const inquirer = require("inquirer");
 const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
@@ -214,7 +213,7 @@ function addEngineer() {
       }
       if (answers.role === "Nope, the team is complete!") {
         const finishHTML = ` 
-        </div>
+          </div>
         </div>
       </main>
       <script src="../index.js"></script>
@@ -318,7 +317,8 @@ function addIntern() {
         addIntern();
       }
       if (answers.role === "Nope, the team is complete!") {
-        const finishHTML = ` </div>
+        const finishHTML = ` 
+          </div>
         </div>
       </main>
       <script src="../index.js"></script>
