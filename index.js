@@ -153,7 +153,7 @@ function addEngineer() {
           "Engineer",
           "Intern",
           new inquirer.Separator(),
-          "Nope, the team is complete!",
+          "I'm finished adding team members.",
         ],
       },
     ])
@@ -207,7 +207,7 @@ function addEngineer() {
       if (answers.role === "Intern") {
         addIntern();
       }
-      if (answers.role === "Nope, the team is complete!") {
+      if (answers.role === "I'm finished adding team members.") {
         const finishHTML = ` 
           </div>
         </div>
