@@ -12,11 +12,11 @@ const Intern = require("./lib/Intern");
 
 // const employee = new Employee();
 
-//empty objects to catch the teammates
-const theManager = [];
-const theEngineers = [];
-const theInterns = [];
-const theTeam = [];
+// //empty objects to catch the teammates
+// const theManager = [];
+// const theEngineers = [];
+// const theInterns = [];
+// const theTeam = [];
 
 function init() {
   inquirer
@@ -57,8 +57,6 @@ function init() {
     ])
     .then((answers) => {
       generateHTML();
-      console.log(answers);
-      console.log(answers.manager.role);
       const manager = answers.manager;
       const newManager = new Manager(
         manager.name,
@@ -66,9 +64,8 @@ function init() {
         manager.email,
         manager.officeNumber
       );
-      console.log(newManager);
       theManager.push(newManager);
-      console.log(theTeam);
+      // console.log(theTeam);
       if(new Manager){
       const managerCard = `
       <div class="card col-sm shadow-lg mb-5 rounded">
