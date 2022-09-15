@@ -1,43 +1,36 @@
 const Employee = require("../lib/Employee");
 
+describe("Employee", () => {
+  it("should create employee instance", () => {
+    const e = new Employee();
+    expect(typeof(e)).toBe("object");
+  });
+
+
 describe("Employee class", () => {
     it("collects employeee name", () => {
-      const frodo = new Employee("Frodo", 22, "@email",);
-      expect(frodo.name).toBe("Frodo");
+      const name = "Frodo";
+      const e = new Employee(name, 22, "@email");
+      expect(e.name).toBe("name");
     });
 
   it("collects employee id", () => {
-    const frodo = new Employee("Frodo", 22, "@email",);
-    expect(frodo.id).toBe(22);
+    const id = "001"
+    const e = new Employee("Frodo", id, "@email");
+    expect(e.id).toBe(id);
   });
 
   it("collects employee email", () => {
-    const frodo = new Employee("Frodo", 22, "@email",);
-    expect(frodo.email).toBe("@email");
+    const email = "@email"
+    const e = new Employee("Frodo", 001, email);
+    expect(e.email).toBe(email);
   });
+//testing the functions
+  test("should be able to get name from method", ()=>{
+    const name = "Cleo"
+    const e = new Employee(name, 0, "email@email.com")
+    expect(e.getName()).toBe(name);
+  })
+})
 
-  // it("collects employee role", () => {
-  //   expect(new Employee.role("Manager")).toBe("Manager");
-  // });
-
-//how do I check if the program is directing user to the appropriate .js files depending on choice? Remember that the roles are extended from the constructor Employee...
-  // it("directs user to manager.js if manager is selected as the role", () => {
-  //   if(manager){
-  //   expect(new manager()).toBe(true);
-  //   }
-  // });
-
-  // it("directs user to engineer.js if engineer is selected as the role", () => {
-  //   if(engineer){
-  //   expect(new engineer()).toBe(true);
-  //   }
-  // });
-
-  // it("directs user to intern.js if intern is selected as the role", () => {
-  //   if(intern){
-  //   expect(new intern()).toBe(true);
-  //   }
-  // });
-
-
-});
+})

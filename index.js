@@ -1,10 +1,10 @@
 const fs = require("fs");
+const chalk = require("chalk");
 const inquirer = require("inquirer");
 const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-
 // const jim = new Manager("Jim", 22, "jim@email", 8888);
 // console.log(jim);
 
@@ -57,6 +57,7 @@ function init() {
       },
     ])
     .then((answers) => {
+      generateHTML();
       console.log(answers);
       console.log(answers.manager.role);
       const manager = answers.manager;
@@ -69,10 +70,9 @@ function init() {
       console.log(newManager);
       theManager.push(newManager);
       console.log(theTeam);
-      //append the team cards to the now generated HTML
-      document.getElementById(
-        "card-zone"
-      ).innerHTML += `<div class="card col-sm shadow-lg mb-5 rounded">
+      if(new Manager){
+      const managerCard = `
+      <div class="card col-sm shadow-lg mb-5 rounded">
         <h3>${manager.name}</h3>
         <h4>
           <i class="fa fa-refresh" style="font-size: 24px"></i>
@@ -93,7 +93,11 @@ function init() {
           </div>
         </div>
       </div>`;
-
+      //append the team cards to the now generated HTML
+      fs.appendFile("./dist/index.html", managerCard, (err) => {
+        err ? console.log(err) : console.log("Your manager has been added!");
+      });
+    }
       console.log(answers.role);
       if (answers.role === "Engineer") {
         addEngineer();
@@ -101,7 +105,17 @@ function init() {
       if (answers.role === "Intern") {
         addIntern();
       }
-      if (answers.role === "Nope, the team is complete!") {
+      if (answers.role === "No, thanks!") {
+        const finishHTML = ` 
+        </div>
+        </div>
+      </main>
+      <script src="../index.js"></script>
+    </body>
+  </html>`;
+        fs.appendFile("./dist/index.html", finishHTML, (err) => {
+          err ? console.log(err) : console.log("Your './dist/index.html' page is complete!");
+        });
         return "Your team page is complete!";
       }
     });
@@ -161,9 +175,9 @@ function addEngineer() {
       console.log(newEngineer);
       theEngineers.push(newEngineer);
       //append the engineer cards
-      document.getElementById(
-        "card-zone"
-      ).innerHTML += `<div class="card col-sm shadow-lg mb-5 rounded">
+      if(new Engineer){
+      const engineerCards = `
+      <div class="card col-sm shadow-lg mb-5 rounded">
       <h3>${engineer.name}</h3>
       <h4>
         <i class="fa fa-refresh" style="font-size: 24px"></i>
@@ -184,10 +198,14 @@ function addEngineer() {
         </div>
         <div id="card-info">
         <h5>GitHub</h5>
-        <a class="gitHub" href="${engineer.github}>${engineer.github}</a>
+        <a class="gitHub" href="${engineer.github}">${engineer.github}</a>
         </div>
         </div>
       </div>`;
+      fs.appendFile("./dist/index.html", engineerCards, (err) => {
+        err ? console.log(err) : console.log("Your engineer has been added!");
+      });
+    }
       if (answers.role === "Engineer") {
         addEngineer();
       }
@@ -195,7 +213,16 @@ function addEngineer() {
         addIntern();
       }
       if (answers.role === "Nope, the team is complete!") {
-        return "Your team page is complete!";
+        const finishHTML = ` 
+        </div>
+        </div>
+      </main>
+      <script src="../index.js"></script>
+    </body>
+  </html>`;
+        fs.appendFile("./dist/index.html", finishHTML, (err) => {
+          err ? console.log(err) : console.log("Your './dist/index.html' is complete!");
+        });
       }
     });
 }
@@ -254,9 +281,9 @@ function addIntern() {
       );
       console.log(newIntern);
       theInterns.push(newIntern);
-      document.getElementById(
-        "card-zone"
-      ).innerHTML += `<div class="card col-sm shadow-lg mb-5 rounded">
+      if(new Intern){
+      const internCards = `
+      <div class="card col-sm shadow-lg mb-5 rounded">
       <h3>${intern.name}</h3>
       <h4>
         <i class="fa fa-user-plus" style="font-size: 24px"></i> Intern
@@ -280,10 +307,10 @@ function addIntern() {
         </div>
       </div>
     </div>`;
-      console.log(internCard);
-      theTeam.push(internCard);
-      console.log(theTeam);
-
+      fs.appendFile("./dist/index.html", internCards, (err) => {
+        err ? console.log(err) : console.log("Your intern has been added!");
+      });
+    }
       if (answers.role === "Engineer") {
         addEngineer();
       }
@@ -291,13 +318,21 @@ function addIntern() {
         addIntern();
       }
       if (answers.role === "Nope, the team is complete!") {
-        return "Your team page is complete!";
+        const finishHTML = ` </div>
+        </div>
+      </main>
+      <script src="../index.js"></script>
+    </body>
+  </html>`;
+        fs.appendFile("./dist/index.html", finishHTML, (err) => {
+          err ? console.log(err) : console.log("Your './dist/index.html' is complete!");
+        });
       }
     });
 }
 
 function generateHTML() {
-  const indexHTML = `<!DOCTYPE html>
+  const printHTML = `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -323,17 +358,11 @@ function generateHTML() {
     <main>
       <div class="container">
         <div class="row d-flex justify-content-center" id="card-zone">
-          <!-- append cards here -->
-        </div>
-      </div>
-    </main>
-    <script src="../lib/Employee.js"></script>
-  </body>
-</html>`;
+          <!-- append cards here -->`;
+
+  fs.writeFile("./dist/index.html", printHTML, (err) => {
+    err ? console.log(err) : console.log("Your team page is being generated!");
+  });
 }
-fs.writeFile("./dist/index.html", indexHTML, (err) =>
-  err ? console.log(err) : console.log("Success! Team page has been generated.")
-);
 
 init();
-generateHTML();
