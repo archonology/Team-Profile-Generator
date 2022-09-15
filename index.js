@@ -175,10 +175,9 @@ function addEngineer() {
       const engineerCards = `
       <div class="card col-sm shadow-lg mb-5 rounded">
       <h3>${engineer.name}</h3>
-      <h4>
-        <i class="fa fa-refresh" style="font-size: 24px"></i>
-        Engineer
-      </h4>
+        <h4>
+          <i class="fa fa-sitemap" style="font-size: 24px"></i> Engineer
+        </h4>
       <div class="card-body rounded">
         <div id="card-info">
           <h5>Employee ID</h5>
