@@ -85,7 +85,7 @@ function init() {
           </div>
           <div id="card-info">
             <h5>Email</h5>
-            <a href="mailto:${manager.email}">${manager.email}/a>
+            <a href="mailto:${manager.email}">${manager.email}</a>
           </div>
           <div id="card-info">
             <h5>Phone #</h5>
@@ -181,7 +181,7 @@ function addEngineer() {
       <h3>${engineer.name}</h3>
       <h4>
         <i class="fa fa-refresh" style="font-size: 24px"></i>
-        Manager
+        Engineer
       </h4>
       <div class="card-body rounded">
         <div id="card-info">
@@ -190,7 +190,7 @@ function addEngineer() {
         </div>
         <div id="card-info">
           <h5>Email</h5>
-          <a href="mailto:${engineer.email}">${engineer.email}/a>
+          <a href="mailto:${engineer.email}">${engineer.email}</a>
         </div>
         <div id="card-info">
           <h5>Phone #</h5>

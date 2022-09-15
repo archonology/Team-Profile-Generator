@@ -11,7 +11,7 @@ describe("Employee class", () => {
     it("collects employeee name", () => {
       const name = "Frodo";
       const e = new Employee(name, 22, "@email");
-      expect(e.name).toBe("name");
+      expect(e.name).toBe("Frodo");
     });
 
   it("collects employee id", () => {
@@ -22,15 +22,21 @@ describe("Employee class", () => {
 
   it("collects employee email", () => {
     const email = "@email"
-    const e = new Employee("Frodo", 001, email);
+    const e = new Employee("Frodo", 22, email);
     expect(e.email).toBe(email);
   });
 //testing the functions
-  test("should be able to get name from method", ()=>{
-    const name = "Cleo"
-    const e = new Employee(name, 0, "email@email.com")
-    expect(e.getName()).toBe(name);
-  })
+  // test("should be able to get name from method", ()=>{
+  //   const name = "Cleo"
+  //   const e = new Employee(name, 0, "email@email.com")
+  //   expect(e.getName()).toBe(name);
+  // })
+
+  // test("should be able to get id from method", ()=>{
+  //   const id = "22"
+  //   const e = new Employee("Cleo", id, "email@email.com")
+  //   expect(e.getId()).toBe(id);
+  // })
 })
 
 })
