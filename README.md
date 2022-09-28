@@ -7,13 +7,13 @@
 ![Project Screenshot](./src/Screen%20Shot%202022-09-14%20at%2011.05.35%20PM.jpg)    
 
 ## Table of Contents:
-#### [Description](https://github.com/archonology/Pro-Readme-Generator/blob/main/README.md#description)
-#### [Installation](https://github.com/archonology/Pro-Readme-Generator/blob/main/README.md#installation)
-#### [Usage Info](https://github.com/archonology/Pro-Readme-Generator/blob/main/README.md#usage-info)
-#### [Constribution Guidelines](https://github.com/archonology/Pro-Readme-Generator/blob/main/README.md#constribution-guidelines)
-#### [Test Instructions](https://github.com/archonology/Pro-Readme-Generator/blob/main/README.md#test-instructions)
-#### [Questions](https://github.com/archonology/Pro-Readme-Generator/blob/main/README.md#questions)
-#### [License Info](https://github.com/archonology/Pro-Readme-Generator/blob/main/README.md#license-info)
+#### [Description](#description)
+#### [Installation](#installation)
+#### [Usage Info](#usage-info)
+#### [Constribution Guidelines](#constribution-guidelines)
+#### [Test Instructions](#test-instructions)
+#### [Questions](#questions)
+#### [License Info](#license-info)
 
 ## Description
 I wanted to be able to generate an html page for team projects. Having a page to keep track of my group helps keep things organized and makes it easy to find contact info for my team and important links, like their github accounts or school info. 
